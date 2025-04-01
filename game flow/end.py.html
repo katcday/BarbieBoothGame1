@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>end.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+end.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pygame</span>
+<span class="s0">import </span><span class="s1">game</span>
+<span class="s0">from </span><span class="s1">button </span><span class="s0">import </span><span class="s1">Button</span>
+<span class="s0">import </span><span class="s1">random</span>
+
+<span class="s0">class </span><span class="s1">End</span><span class="s2">:</span>
+    <span class="s0">def </span><span class="s1">__init__</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">screen</span><span class="s2">, </span><span class="s1">image</span><span class="s2">):</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen </span><span class="s2">= </span><span class="s1">screen</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">image </span><span class="s2">= </span><span class="s1">image</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">font </span><span class="s2">= </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">font</span><span class="s2">.</span><span class="s1">SysFont</span><span class="s2">(</span><span class="s3">'arial'</span><span class="s2">, </span><span class="s1">int</span><span class="s2">(</span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span><span class="s2">/</span><span class="s4">25</span><span class="s2">))</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">words </span><span class="s2">= [</span><span class="s3">&quot;Fabulous!&quot;</span><span class="s2">, </span><span class="s3">&quot;Perfect!&quot;</span><span class="s2">, </span><span class="s3">&quot;Awesome!&quot;</span><span class="s2">, </span><span class="s3">&quot;Super!&quot;</span><span class="s2">]</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">word </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">choice</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">words</span><span class="s2">)</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">height </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height</span>
+        <span class="s1">button_width </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span><span class="s2">/</span><span class="s4">4</span>
+        <span class="s1">button_height </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height</span><span class="s2">/</span><span class="s4">12</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">email </span><span class="s2">= </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;email&quot;</span><span class="s2">, (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">button_width</span><span class="s2">)/</span><span class="s4">2</span><span class="s2">,</span>
+                            <span class="s4">7</span><span class="s2">*</span><span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">10</span><span class="s2">, </span><span class="s1">button_width</span><span class="s2">, </span><span class="s1">button_height</span><span class="s2">,</span>
+                            <span class="s1">game</span><span class="s2">.</span><span class="s1">PINK</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">LIGHT_PINK</span><span class="s2">)</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">restart </span><span class="s2">= </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;restart&quot;</span><span class="s2">, (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">button_width</span><span class="s2">) / </span><span class="s4">2</span><span class="s2">,</span>
+                            <span class="s4">7 </span><span class="s2">* </span><span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">10 </span><span class="s2">+ </span><span class="s4">6</span><span class="s2">*</span><span class="s1">button_height</span><span class="s2">/</span><span class="s4">5</span><span class="s2">, </span><span class="s1">button_width</span><span class="s2">, </span><span class="s1">button_height</span><span class="s2">,</span>
+                            <span class="s1">game</span><span class="s2">.</span><span class="s1">PINK</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">LIGHT_PINK</span><span class="s2">)</span>
+
+    <span class="s0">def </span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">):</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">fill</span><span class="s2">(</span><span class="s1">game</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">)</span>
+        <span class="s1">text </span><span class="s2">= </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">.</span><span class="s1">render</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">word</span><span class="s2">, </span><span class="s0">True</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">PINK</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">blit</span><span class="s2">(</span><span class="s1">text</span><span class="s2">, ((</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">text</span><span class="s2">.</span><span class="s1">get_width</span><span class="s2">())//</span><span class="s4">2</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">4</span><span class="s2">))</span>
+
+        <span class="s1">scale </span><span class="s2">= </span><span class="s4">0.25</span>
+        <span class="s1">iwidth </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">* </span><span class="s1">scale</span><span class="s2">)</span>
+        <span class="s1">iheight </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">* </span><span class="s1">scale</span><span class="s2">)</span>
+        <span class="s1">ix </span><span class="s2">= (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">iwidth</span><span class="s2">) / </span><span class="s4">2</span>
+        <span class="s1">iy </span><span class="s2">= (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">height </span><span class="s2">- </span><span class="s1">iheight</span><span class="s2">) / </span><span class="s4">2</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">blit</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">transform</span><span class="s2">.</span><span class="s1">scale</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">image</span><span class="s2">, (</span><span class="s1">iwidth</span><span class="s2">, </span><span class="s1">iheight</span><span class="s2">)), (</span><span class="s1">ix</span><span class="s2">, </span><span class="s1">iy</span><span class="s2">))</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">email</span><span class="s2">.</span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">restart</span><span class="s2">.</span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">)</span>
+
+    <span class="s0">def </span><span class="s1">state</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">event</span><span class="s2">):</span>
+        <span class="s0">if </span><span class="s1">event</span><span class="s2">.</span><span class="s1">type </span><span class="s2">== </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">MOUSEBUTTONDOWN</span><span class="s2">:</span>
+            <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">restart</span><span class="s2">.</span><span class="s1">clicked</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">()):</span>
+                <span class="s0">return </span><span class="s3">&quot;start&quot;</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">restart</span><span class="s2">.</span><span class="s1">collide</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">())</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">email</span><span class="s2">.</span><span class="s1">collide</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">())</span>
+
+        <span class="s0">return </span><span class="s3">&quot;end&quot;</span>
+</pre>
+</body>
+</html>

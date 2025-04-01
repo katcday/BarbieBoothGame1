@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>play.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+play.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">xml</span><span class="s2">.</span><span class="s1">sax</span><span class="s2">.</span><span class="s1">handler </span><span class="s0">import </span><span class="s1">property_xml_string</span>
+
+<span class="s0">import </span><span class="s1">pygame</span>
+<span class="s0">import </span><span class="s1">game</span>
+<span class="s0">from </span><span class="s1">button </span><span class="s0">import </span><span class="s1">Button</span><span class="s2">, </span><span class="s1">ImageButton</span>
+
+<span class="s0">class </span><span class="s1">Play</span><span class="s2">:</span>
+    <span class="s0">def </span><span class="s1">__init__</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">screen</span><span class="s2">, </span><span class="s1">image</span><span class="s2">):</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen </span><span class="s2">= </span><span class="s1">screen</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">doll </span><span class="s2">= </span><span class="s1">image</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">height </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">font </span><span class="s2">= </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">font</span><span class="s2">.</span><span class="s1">SysFont</span><span class="s2">(</span><span class="s3">'arial'</span><span class="s2">, </span><span class="s1">int</span><span class="s2">(</span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span><span class="s2">/</span><span class="s4">25</span><span class="s2">))</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">corner </span><span class="s2">= </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;&quot;</span><span class="s2">, </span><span class="s4">4</span><span class="s2">*</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width</span><span class="s2">/</span><span class="s4">5</span><span class="s2">,</span>
+                             <span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height</span><span class="s2">/</span><span class="s4">12</span><span class="s2">,</span>
+                             <span class="s1">self</span><span class="s2">.</span><span class="s1">width</span><span class="s2">/</span><span class="s4">8</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">width</span><span class="s2">/</span><span class="s4">8</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">PINK</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">LIGHT_PINK</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">buttons </span><span class="s2">= [</span><span class="s1">ImageButton</span><span class="s2">(</span><span class="s3">'images/arrow.png'</span><span class="s2">, </span><span class="s4">100</span><span class="s2">, </span><span class="s4">100</span><span class="s2">, </span><span class="s0">True</span><span class="s2">, </span><span class="s4">100</span><span class="s2">), </span><span class="s1">ImageButton</span><span class="s2">(</span><span class="s3">'images/arrow.png'</span><span class="s2">, </span><span class="s4">500</span><span class="s2">, </span><span class="s4">100</span><span class="s2">, </span><span class="s0">False</span><span class="s2">, </span><span class="s4">100</span><span class="s2">)]</span>
+
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">pop </span><span class="s2">= </span><span class="s0">False</span>
+        <span class="s1">pop_width</span><span class="s2">, </span><span class="s1">pop_height </span><span class="s2">= </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width </span><span class="s2">/ </span><span class="s4">2</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height </span><span class="s2">/ </span><span class="s4">2</span>
+        <span class="s1">pop_x </span><span class="s2">= (</span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width </span><span class="s2">- </span><span class="s1">pop_width</span><span class="s2">) // </span><span class="s4">2</span>
+        <span class="s1">pop_y </span><span class="s2">= (</span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height </span><span class="s2">- </span><span class="s1">pop_height</span><span class="s2">) // </span><span class="s4">2</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">popup </span><span class="s2">= </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">Rect</span><span class="s2">(</span><span class="s1">pop_x</span><span class="s2">, </span><span class="s1">pop_y</span><span class="s2">, </span><span class="s1">pop_width</span><span class="s2">, </span><span class="s1">pop_height</span><span class="s2">)</span>
+
+        <span class="s1">button_width</span><span class="s2">, </span><span class="s1">button_height </span><span class="s2">= </span><span class="s1">self</span><span class="s2">.</span><span class="s1">width</span><span class="s2">/</span><span class="s4">4</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">12</span>
+        <span class="s1">button_x </span><span class="s2">= </span><span class="s1">pop_x </span><span class="s2">+ (</span><span class="s1">pop_width </span><span class="s2">- </span><span class="s1">button_width</span><span class="s2">) // </span><span class="s4">2</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">finish </span><span class="s2">= </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;finish&quot;</span><span class="s2">, (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">button_width</span><span class="s2">)/</span><span class="s4">2</span><span class="s2">,</span>
+                             <span class="s4">2</span><span class="s2">*</span><span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">5</span><span class="s2">,</span>
+                             <span class="s1">button_width</span><span class="s2">, </span><span class="s1">button_height</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">LIGHT_PINK</span><span class="s2">)</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">resume </span><span class="s2">= </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;resume&quot;</span><span class="s2">, (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">button_width</span><span class="s2">)/</span><span class="s4">2</span><span class="s2">,</span>
+                              <span class="s1">self</span><span class="s2">.</span><span class="s1">height</span><span class="s2">/</span><span class="s4">2</span><span class="s2">,</span>
+                               <span class="s1">button_width</span><span class="s2">, </span><span class="s1">button_height</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">LIGHT_PINK</span><span class="s2">)</span>
+
+
+
+    <span class="s0">def </span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">):</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">fill</span><span class="s2">(</span><span class="s1">game</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">)</span>
+
+        <span class="s1">scale </span><span class="s2">= </span><span class="s4">0.5</span>
+        <span class="s1">iwidth </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">* </span><span class="s1">scale</span><span class="s2">)</span>
+        <span class="s1">iheight </span><span class="s2">= </span><span class="s1">int</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width</span><span class="s2">*</span><span class="s1">scale</span><span class="s2">)</span>
+        <span class="s1">ix </span><span class="s2">= (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">width </span><span class="s2">- </span><span class="s1">iwidth</span><span class="s2">) / </span><span class="s4">2</span>
+        <span class="s1">iy </span><span class="s2">= (</span><span class="s1">self</span><span class="s2">.</span><span class="s1">height </span><span class="s2">- </span><span class="s1">iheight</span><span class="s2">) / </span><span class="s4">2</span>
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">blit</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">transform</span><span class="s2">.</span><span class="s1">scale</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">doll</span><span class="s2">, (</span><span class="s1">iwidth</span><span class="s2">, </span><span class="s1">iheight</span><span class="s2">)), (</span><span class="s1">ix</span><span class="s2">, </span><span class="s1">iy</span><span class="s2">))</span>
+
+        <span class="s1">self</span><span class="s2">.</span><span class="s1">corner</span><span class="s2">.</span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">)</span>
+
+        <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">pop</span><span class="s2">:</span>
+            <span class="s1">overlay </span><span class="s2">= </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">Surface</span><span class="s2">((</span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_width</span><span class="s2">, </span><span class="s1">game</span><span class="s2">.</span><span class="s1">screen_height</span><span class="s2">), </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">SRCALPHA</span><span class="s2">)</span>
+            <span class="s1">overlay</span><span class="s2">.</span><span class="s1">fill</span><span class="s2">((</span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s4">128</span><span class="s2">))</span>
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">.</span><span class="s1">blit</span><span class="s2">(</span><span class="s1">overlay</span><span class="s2">, (</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s2">))</span>
+
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">finish</span><span class="s2">.</span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">)</span>
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">resume</span><span class="s2">.</span><span class="s1">draw</span><span class="s2">(</span><span class="s1">self</span><span class="s2">.</span><span class="s1">screen</span><span class="s2">, </span><span class="s1">self</span><span class="s2">.</span><span class="s1">font</span><span class="s2">)</span>
+
+    <span class="s0">def </span><span class="s1">state</span><span class="s2">(</span><span class="s1">self</span><span class="s2">, </span><span class="s1">event</span><span class="s2">):</span>
+        <span class="s0">if </span><span class="s1">event</span><span class="s2">.</span><span class="s1">type </span><span class="s2">== </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">MOUSEBUTTONDOWN</span><span class="s2">:</span>
+            <span class="s1">pos </span><span class="s2">= </span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">()</span>
+
+            <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">pop</span><span class="s2">:</span>
+                <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">finish</span><span class="s2">.</span><span class="s1">clicked</span><span class="s2">(</span><span class="s1">pos</span><span class="s2">):</span>
+                    <span class="s0">return </span><span class="s3">&quot;end&quot;</span>
+                <span class="s0">elif </span><span class="s1">self</span><span class="s2">.</span><span class="s1">resume</span><span class="s2">.</span><span class="s1">clicked</span><span class="s2">(</span><span class="s1">pos</span><span class="s2">):</span>
+                    <span class="s1">self</span><span class="s2">.</span><span class="s1">pop </span><span class="s2">= </span><span class="s0">False</span>
+            <span class="s0">else</span><span class="s2">:</span>
+                <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">corner</span><span class="s2">.</span><span class="s1">clicked</span><span class="s2">(</span><span class="s1">pos</span><span class="s2">):</span>
+                    <span class="s1">self</span><span class="s2">.</span><span class="s1">pop </span><span class="s2">= </span><span class="s0">True</span>
+
+
+        <span class="s0">if </span><span class="s1">self</span><span class="s2">.</span><span class="s1">pop</span><span class="s2">:</span>
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">finish</span><span class="s2">.</span><span class="s1">collide</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">())</span>
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">resume</span><span class="s2">.</span><span class="s1">collide</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">())</span>
+        <span class="s0">else</span><span class="s2">:</span>
+            <span class="s1">self</span><span class="s2">.</span><span class="s1">corner</span><span class="s2">.</span><span class="s1">collide</span><span class="s2">(</span><span class="s1">pygame</span><span class="s2">.</span><span class="s1">mouse</span><span class="s2">.</span><span class="s1">get_pos</span><span class="s2">())</span>
+
+        <span class="s0">return </span><span class="s3">&quot;play&quot;</span>
+</pre>
+</body>
+</html>

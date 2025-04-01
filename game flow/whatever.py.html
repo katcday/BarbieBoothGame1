@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>whatever.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #7a7e85;}
+.s3 { color: #bcbec4;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+whatever.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pygame</span>
+<span class="s2">#from button import Button</span>
+<span class="s0">import </span><span class="s1">start</span>
+<span class="s0">import </span><span class="s1">game</span>
+
+<span class="s1">pygame</span><span class="s3">.</span><span class="s1">init</span><span class="s3">()</span>
+
+<span class="s1">screen_width </span><span class="s3">= </span><span class="s4">1280</span>
+<span class="s1">screen_height </span><span class="s3">= </span><span class="s4">720</span>
+
+<span class="s1">window </span><span class="s3">= </span><span class="s1">pygame</span><span class="s3">.</span><span class="s1">display</span><span class="s3">.</span><span class="s1">set_mode</span><span class="s3">((</span><span class="s1">game</span><span class="s3">.</span><span class="s1">screen_width</span><span class="s3">, </span><span class="s1">game</span><span class="s3">.</span><span class="s1">screen_height</span><span class="s3">))</span>
+<span class="s1">pygame</span><span class="s3">.</span><span class="s1">display</span><span class="s3">.</span><span class="s1">set_caption</span><span class="s3">(</span><span class="s5">&quot;Start&quot;</span><span class="s3">)</span>
+
+<span class="s0">def </span><span class="s1">draw_text</span><span class="s3">(</span><span class="s1">text</span><span class="s3">, </span><span class="s1">font</span><span class="s3">, </span><span class="s1">color</span><span class="s3">, </span><span class="s1">x</span><span class="s3">, </span><span class="s1">y</span><span class="s3">):</span>
+    <span class="s1">img </span><span class="s3">= </span><span class="s1">font</span><span class="s3">.</span><span class="s1">render</span><span class="s3">(</span><span class="s1">text</span><span class="s3">, </span><span class="s0">True</span><span class="s3">, </span><span class="s1">color</span><span class="s3">)</span>
+    <span class="s1">window</span><span class="s3">.</span><span class="s1">blit</span><span class="s3">(</span><span class="s1">img</span><span class="s3">, (</span><span class="s1">x</span><span class="s3">, </span><span class="s1">y</span><span class="s3">))</span>
+
+<span class="s2">#fonts</span>
+<span class="s1">font </span><span class="s3">= </span><span class="s1">pygame</span><span class="s3">.</span><span class="s1">font</span><span class="s3">.</span><span class="s1">SysFont</span><span class="s3">(</span><span class="s5">&quot;arialblack&quot;</span><span class="s3">, </span><span class="s4">40</span><span class="s3">)</span>
+<span class="s1">white </span><span class="s3">= (</span><span class="s4">255</span><span class="s3">, </span><span class="s4">255</span><span class="s3">, </span><span class="s4">255</span><span class="s3">)</span>
+
+<span class="s5">&quot;&quot;&quot; 
+#game loop 
+run = True 
+state = &quot;start&quot; 
+ 
+while run: 
+    window.fill(game.PINK) 
+ 
+    if state == &quot;quit&quot; 
+ 
+ 
+    pygame.display.update() 
+&quot;&quot;&quot;</span>
+
+<span class="s0">def </span><span class="s1">start</span><span class="s3">():</span>
+    <span class="s0">while True</span><span class="s3">:</span>
+        <span class="s1">mouse_pos </span><span class="s3">= </span><span class="s1">pygame</span><span class="s3">.</span><span class="s1">mouse</span><span class="s3">.</span><span class="s1">get_pos</span><span class="s3">()</span>
+        <span class="s1">window</span><span class="s3">.</span><span class="s1">fill</span><span class="s3">(</span><span class="s1">game</span><span class="s3">.</span><span class="s1">pink</span><span class="s3">)</span>
+
+        <span class="s1">text </span><span class="s3">= </span><span class="s1">draw_text</span><span class="s3">(</span><span class="s5">&quot;start&quot;</span><span class="s3">, </span><span class="s1">font</span><span class="s3">, </span><span class="s1">white</span><span class="s3">, </span><span class="s4">640</span><span class="s3">, </span><span class="s4">260</span><span class="s3">)</span>
+        <span class="s1">start_button </span><span class="s3">= </span><span class="s1">text</span><span class="s3">.</span><span class="s1">get_rect</span><span class="s3">(</span><span class="s1">center </span><span class="s3">= (</span><span class="s4">640</span><span class="s3">, </span><span class="s4">260</span><span class="s3">))</span>
+        <span class="s1">window</span><span class="s3">.</span><span class="s1">blit</span><span class="s3">(</span><span class="s1">text</span><span class="s3">, </span><span class="s1">start_button</span><span class="s3">)</span>
+
+        <span class="s1">pygame</span><span class="s3">.</span><span class="s1">display</span><span class="s3">.</span><span class="s1">update</span><span class="s3">()</span>
+
+<span class="s1">pygame</span><span class="s3">.</span><span class="s1">quit</span><span class="s3">()</span></pre>
+</body>
+</html>
